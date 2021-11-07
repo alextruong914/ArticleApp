@@ -14,8 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.musicapp.databinding.ActivityScrollingBinding;
+import com.example.musicapp.databinding.ContentScrollingBinding;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -23,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 public class ScrollingActivity extends AppCompatActivity {
 
     private ActivityScrollingBinding binding;
+//    private ContentScrollingBinding contentBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,9 @@ public class ScrollingActivity extends AppCompatActivity {
         Log.d("Tag", "Test print");
         binding = ActivityScrollingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+//        contentBinding = ContentScrollingBinding.inflate(getLayoutInflater());
+//        setContentView(contentBinding.getRoot());
+//        TextView textview = contentBinding.textview;
         Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
@@ -54,9 +59,10 @@ public class ScrollingActivity extends AppCompatActivity {
                 for (Article a:articles){
                     System.out.println("--------------=------------");
                     System.out.println(a);
+//                    textview.setText(a.toString());
                 }
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                Snackbar.make(view, articles.get(0).toString(), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }

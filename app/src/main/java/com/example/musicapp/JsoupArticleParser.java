@@ -30,13 +30,14 @@ public class JsoupArticleParser implements Parser {
     private String extractImage(String link) throws IOException, MalformedURLException {
         String result = "";
         Document doc5 = Jsoup.connect(link).get();
-        Elements images = doc5.getElementsByTag("img");
+        Elements images = doc5.select("img[src~=(?i)\\.(png|jpe?g|gif|webp)]");
         if (images.size() > 0) {
             //Homework: Change this so it only gets png, jpg, webp larger than a certain size in pixels.
             // For the next task, we may need to temporarily hardcode this image so that it gets a
             // nice png / jpg for us to use in the app.
             Element image = images.get(0);
-            result = link + "/" + image.attr("src");
+//            result = link + "/" + image.attr("src");
+            result = image.absUrl("src");
         }
 
         return result;
@@ -120,7 +121,7 @@ public class JsoupArticleParser implements Parser {
          */
         ArrayList<Article> ar = new ArrayList<Article>();
 //        for (int i = 0; i < (links.size() - 1); i++) {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             String content = extractContent(links.get(i));
             String image = extractImage(links.get(i));
             Article a = new Article(headings.get(i), links.get(i), timePosted.get(i), content, image);
