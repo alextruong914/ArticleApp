@@ -17,56 +17,56 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.musicapp.databinding.ActivityScrollingBinding;
+import com.example.musicapp.databinding.ArticleScrollingBinding;
 import com.example.musicapp.databinding.ContentScrollingBinding;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class ArticleActivity extends AppCompatActivity {
 
-    private ActivityScrollingBinding binding;
+    private ArticleScrollingBinding binding;
 //    private ContentScrollingBinding contentBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("Tag", "Test print");
-        binding = ActivityScrollingBinding.inflate(getLayoutInflater());
+        binding = ArticleScrollingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        contentBinding = ContentScrollingBinding.inflate(getLayoutInflater());
 //        setContentView(contentBinding.getRoot());
 //        TextView textview = contentBinding.textview;
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
-        toolBarLayout.setTitle(getTitle());
+        //Toolbar toolbar = binding.toolbar;
+        //setSupportActionBar(toolbar);
+        //CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
+        //toolBarLayout.setTitle(getTitle());
 
-        FloatingActionButton fab = binding.fab;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ScrapeWebsiteTask runTask = new ScrapeWebsiteTask();
-                runTask.execute();
+        //FloatingActionButton fab = binding.fab;
+        ScrapeWebsiteTask runTask = new ScrapeWebsiteTask();
+        runTask.execute();
 
-                ArrayList<Article> articles = null;
-                try {
-                    articles = runTask.get();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                for (Article a:articles){
-                    System.out.println("--------------=------------");
-                    System.out.println(a);
+        ArrayList<Article> articles = null;
+        try {
+            articles = runTask.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (Article a:articles){
+            System.out.println("--------------=------------");
+            System.out.println(a);
 //                    textview.setText(a.toString());
-                }
-                new DownloadImageTask((ImageView) findViewById(R.id.imageView)).execute(articles.get(2).image);
-                Snackbar.make(view, articles.get(0).toString(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        }
+        //new DownloadImageTask((ImageView) findViewById(R.id.imageView)).execute(articles.get(2).image);
+//        Snackbar.make(view, articles.get(0).toString(), Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+        // On create, setup the first box to have some data in it
+        // First lets just get one, in the future we can make it do all of them automatically
+        // Then, we can make it click to another view after clicking on this one.
+        TextView textView = binding.textView47;
+        textView.setText(articles.get(2).heading);
     }
 
     @Override
