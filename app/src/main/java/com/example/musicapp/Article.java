@@ -1,13 +1,23 @@
 package com.example.musicapp;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.IOException;
 import java.net.URI;
 
 
-public class Article {
+public class Article implements Parcelable {
     // Here we can create the object with all the fields for an article!
     // now an article just contains the data and some very basic operations that an article can do
-
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Article createFromParcel(Parcel in) {
+            return new Article(in);
+        }
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
     // Heading
     public String heading;
     // Link
@@ -26,7 +36,8 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Heading: " + this.heading + "\nLink: " + link + "\nTime Posted: " + timePosted + "\nContent: " + content + "\nImage: " + image;
+        return "Article{"+
+                "heading: " + this.heading + "\nLink: " + link + "\nTime Posted: " + timePosted + "\nContent: " + content + "\nImage: " + image;
     }
 
 
@@ -36,6 +47,29 @@ public class Article {
         this.timePosted = timePosted;
         this.content = content;
         this.image = image;
+    }
+
+    public Article(Parcel in){
+        this.heading = in.readString();
+        this.link = in.readString();
+        this.content = in.readString();
+        this.image = in.readString();
+        this.timePosted = in.readString();
+
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.heading);
+        parcel.writeString(this.link);
+        parcel.writeString(this.content);
+        parcel.writeString(this.image);
+        parcel.writeString(this.timePosted);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
 }

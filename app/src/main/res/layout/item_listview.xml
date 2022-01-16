@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<TextView android:id="@+id/tv_Heading"
+    android:layout_width="106dp"
+    android:layout_height="106dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/roundstyle"
+    android:backgroundTint="#BEBCB8"
+    android:text="1"
+    android:textSize="16dp"
+    android:textStyle="bold"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#333333"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/bg_title"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:background="#AB4E68"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="313dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+
+                android:paddingTop="2dp"
+                android:scrollbars="vertical"
+                android:textColor="#EBEBEB"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/backButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#AB4E68"
+                android:gravity="center|right|center_vertical"
+                app:icon="?attr/actionModeCloseDrawable"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundstyle"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/articleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <LinearLayout
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/roundstyle"
+                    android:backgroundTint="#F0E8E1"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/articleHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/articleContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,33 +1,33 @@
 package com.example.musicapp;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.musicapp.databinding.ArticleScrollingBinding;
-import com.example.musicapp.databinding.ContentScrollingBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class ArticleActivity extends AppCompatActivity {
 
     private ArticleScrollingBinding binding;
 //    private ContentScrollingBinding contentBinding;
+    private ListView articleList;
 
+    private ArrayList<String> arrHeadings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +47,7 @@ public class ArticleActivity extends AppCompatActivity {
         runTask.execute();
 
         ArrayList<Article> articles = null;
+
         try {
             articles = runTask.get();
         } catch (ExecutionException e) {
@@ -65,8 +66,60 @@ public class ArticleActivity extends AppCompatActivity {
         // On create, setup the first box to have some data in it
         // First lets just get one, in the future we can make it do all of them automatically
         // Then, we can make it click to another view after clicking on this one.
-        TextView textView = binding.textView47;
-        textView.setText(articles.get(2).heading);
+//        TextView textView = binding.textView56;
+//        textView.setText(articles.get(0).heading);
+
+        ListView articleList = binding.articleList;
+
+        // Create an ArrayList of just the headings from articles
+
+        arrHeadings = new ArrayList<>();
+        for (Article arr:articles)
+        {
+            arrHeadings.add(arr.heading);
+        }
+        // For loop over all of the articles
+        // Use .add to add a new textView to the articleList and setup the correct onClick event below
+
+        // articleList.addView();
+
+//        for (Article arr:articles) {
+//            TextView textView = (TextView) findViewById(R.id.tv_Heading);
+//            //textView.setText(arr.heading);
+//            //articleList.addView(textView);
+//        }
+        //
+        CustomArrayAdapter itemsAdapter = new CustomArrayAdapter(this, R.layout.item_listview,arrHeadings);
+        ListView listView = (ListView) findViewById(R.id.articleList);
+
+        listView.setAdapter(itemsAdapter);
+
+        ArrayList<Article> finalArticles = articles;
+        articleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                Intent intentPage = new Intent(ArticleActivity.this, PageActivity.class);
+                // This is designed to pass specific data to one activity, however we want a general purpose cache for the whole app
+                // All of the activities should have access, and it won't change based on the application state
+                intentPage.putExtra("article", (Parcelable) finalArticles.get(position));
+
+                ArticleActivity.this.startActivity(intentPage);
+                Log.i("Content", "Started page layout");
+            }
+        });
+//        View.OnClickListener handler = new View.OnClickListener(){
+//            public void onClick(View v) {
+//                if (v==textView) {
+//                    Intent intentPage = new Intent(ArticleActivity.this, PageActivity.class);
+//                    intentPage.putExtra("article", (Parcelable) finalArticles.get(0));
+//
+//                    ArticleActivity.this.startActivity(intentPage);
+//                    Log.i("Content", "Started page layout");
+//                }
+//            }
+//        };
+//        textView.setOnClickListener(handler);
     }
 
     @Override
