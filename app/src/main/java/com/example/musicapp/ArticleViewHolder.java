@@ -13,7 +13,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
 
     public ArticleViewHolder(View itemView) {
         super(itemView);
-        articleItemView = itemView.findViewById(R.id.tv_Heading);
+        articleItemView = itemView.findViewById(R.id.textView);
     }
 
     public void bind(String text){
@@ -21,7 +21,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
     }
 
     static ArticleViewHolder create(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent,false);
         return new ArticleViewHolder(view);
     }
 }

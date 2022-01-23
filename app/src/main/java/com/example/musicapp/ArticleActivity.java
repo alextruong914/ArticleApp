@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Parcelable;
 import android.util.Log;
@@ -43,6 +45,11 @@ public class ArticleActivity extends AppCompatActivity {
         //toolBarLayout.setTitle(getTitle());
 
         //FloatingActionButton fab = binding.fab;
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final ArticleListAdapter adapter = new ArticleListAdapter(new ArticleListAdapter.ArticleDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         ScrapeWebsiteTask runTask = new ScrapeWebsiteTask();
         runTask.execute();
 
@@ -69,7 +76,7 @@ public class ArticleActivity extends AppCompatActivity {
 //        TextView textView = binding.textView56;
 //        textView.setText(articles.get(0).heading);
 
-        ListView articleList = binding.articleList;
+//        ListView articleList = binding.articleList;
 
         // Create an ArrayList of just the headings from articles
 
@@ -90,24 +97,24 @@ public class ArticleActivity extends AppCompatActivity {
 //        }
         //
         CustomArrayAdapter itemsAdapter = new CustomArrayAdapter(this, R.layout.item_listview,arrHeadings);
-        ListView listView = (ListView) findViewById(R.id.articleList);
+//        ListView listView = (ListView) findViewById(R.id.articleList);
 
-        listView.setAdapter(itemsAdapter);
+//        listView.setAdapter(itemsAdapter);
 
-        ArrayList<Article> finalArticles = articles;
-        articleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
-                Intent intentPage = new Intent(ArticleActivity.this, PageActivity.class);
-                // This is designed to pass specific data to one activity, however we want a general purpose cache for the whole app
-                // All of the activities should have access, and it won't change based on the application state
-                intentPage.putExtra("article", (Parcelable) finalArticles.get(position));
-
-                ArticleActivity.this.startActivity(intentPage);
-                Log.i("Content", "Started page layout");
-            }
-        });
+//        ArrayList<Article> finalArticles = articles;
+//        articleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//
+//                Intent intentPage = new Intent(ArticleActivity.this, PageActivity.class);
+//                // This is designed to pass specific data to one activity, however we want a general purpose cache for the whole app
+//                // All of the activities should have access, and it won't change based on the application state
+//                intentPage.putExtra("article", (Parcelable) finalArticles.get(position));
+//
+//                ArticleActivity.this.startActivity(intentPage);
+//                Log.i("Content", "Started page layout");
+//            }
+//        });
 //        View.OnClickListener handler = new View.OnClickListener(){
 //            public void onClick(View v) {
 //                if (v==textView) {
