@@ -9,28 +9,7 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
-//abstract fun scheduleDao(): ScheduleDao
-//
-//        companion object {
-        //@Volatile
-        //private var INSTANCE: AppDatabase? = null
-//
-//        fun getDatabase(context: Context): AppDatabase {
-//        return INSTANCE ?: synchronized(this) {
-//        val instance = Room.databaseBuilder(
-//        context,
-//        AppDatabase::class.java,
-//        "app_database")
-//        .createFromAsset("database/bus_schedule.db")
-//        .build()
-//        INSTANCE = instance
-//
-//        instance
-//        }
-//        }
-//        }
-
+@Database(entities = {ArticleEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ArticleDao articleDao();
 
@@ -44,7 +23,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                    AppDatabase.class, "app_database").build();
+                    AppDatabase.class, "article_database").build();
                 }
             }
         }
