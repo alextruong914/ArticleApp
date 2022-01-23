@@ -6,9 +6,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "article_table")
 public class ArticleEntity {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     int id;
     @NonNull
     @ColumnInfo(name = "heading")
