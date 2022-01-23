@@ -11,7 +11,7 @@ import java.util.List;
 @Dao
 public interface ArticleDao {
     @Query("SELECT * FROM article_table ORDER BY timePosted ASC")
-    List<Article> getAll();
+    LiveData<List<Article>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Article article);
@@ -20,7 +20,7 @@ public interface ArticleDao {
     void deleteAll();
 
     @Query("SELECT * FROM article_table WHERE id = :id ORDER BY timePosted ASC")
-    List<Article> getById(int id);
+    LiveData<Article> getById(int id);
 }
 
 
