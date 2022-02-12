@@ -50,23 +50,23 @@ public class ArticleActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ScrapeWebsiteTask runTask = new ScrapeWebsiteTask();
-        runTask.execute();
-
-        ArrayList<Article> articles = null;
-
-        try {
-            articles = runTask.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        for (Article a:articles){
-            System.out.println("--------------=------------");
-            System.out.println(a);
-//                    textview.setText(a.toString());
-        }
+//        ScrapeWebsiteTask runTask = new ScrapeWebsiteTask();
+//        runTask.execute();
+//
+//        ArrayList<Article> articles = null;
+//
+//        try {
+//            articles = runTask.get();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        for (Article a:articles){
+//            System.out.println("--------------=------------");
+//            System.out.println(a);
+////                    textview.setText(a.toString());
+//        }
         //new DownloadImageTask((ImageView) findViewById(R.id.imageView)).execute(articles.get(2).image);
 //        Snackbar.make(view, articles.get(0).toString(), Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show();
@@ -80,11 +80,11 @@ public class ArticleActivity extends AppCompatActivity {
 
         // Create an ArrayList of just the headings from articles
 
-        arrHeadings = new ArrayList<>();
-        for (Article arr:articles)
-        {
-            arrHeadings.add(arr.heading);
-        }
+//        arrHeadings = new ArrayList<>();
+//        for (Article arr:articles)
+//        {
+//            arrHeadings.add(arr.heading);
+//        }
         // For loop over all of the articles
         // Use .add to add a new textView to the articleList and setup the correct onClick event below
 

@@ -8,15 +8,15 @@
     android:textAlignment="center"
     tools:context=".ArticleActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/bg_title"
-            android:layout_width="409dp"
-            android:layout_height="87dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#AB4E68"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,87 +37,77 @@
                 android:textSize="34sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="106dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="@android:color/darker_gray"
-                android:fontFamily="sans-serif"
-                android:padding="10dp"
-                android:src="@drawable/roundstyle"
-                android:text="Favourite"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="#4E4E4E"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bg_title" />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="106dp"
+            android:layout_height="49dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:src="@drawable/roundstyle"
+            android:text="Favourite"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#4E4E4E"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg_title" />
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="106dp"
-                android:layout_height="49dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:backgroundTint="@android:color/darker_gray"
-                android:fontFamily="sans-serif"
-                android:src="@drawable/roundstyle"
-                android:text="Top"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="#4E4E4E"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button2"
-                app:layout_constraintTop_toBottomOf="@+id/bg_title" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:fontFamily="sans-serif"
+            android:src="@drawable/roundstyle"
+            android:text="Top"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#4E4E4E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/bg_title" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="106dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@android:color/darker_gray"
-                android:fontFamily="sans-serif"
-                android:padding="10dp"
-                android:src="@drawable/roundstyle"
-                android:text="New"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="#4E4E4E"
-                android:textColorHighlight="@android:color/white"
-                app:layout_constraintEnd_toStartOf="@+id/button3"
-                app:layout_constraintStart_toEndOf="@+id/button1"
-                app:layout_constraintTop_toBottomOf="@+id/bg_title" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:src="@drawable/roundstyle"
+            android:text="New"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#4E4E4E"
+            android:textColorHighlight="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintStart_toEndOf="@+id/button1"
+            app:layout_constraintTop_toBottomOf="@+id/bg_title" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            tools:listitem="@layout/recyclerview_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/recyclerview_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="@string/add_word"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
